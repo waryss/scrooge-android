@@ -65,7 +65,7 @@ public class LoginActivity extends AbstractActivity {
     private EditText mPasswordView;
     private View mProgressView;
     private View mLoginFormView;
-    private TextView mErrorMeassgeView;
+    private TextView mErrorMessageView;
 
     private final RestClient client = new RestClientBuilder()
             .withBaseUrl(API_SERVER_URL)
@@ -78,7 +78,7 @@ public class LoginActivity extends AbstractActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // Set up the login form.
-        mErrorMeassgeView = findViewById(R.id.error_panel);
+        mErrorMessageView = findViewById(R.id.error_panel);
         mEmailView = findViewById(R.id.email);
         populateAutoComplete();
 
@@ -330,10 +330,10 @@ public class LoginActivity extends AbstractActivity {
                         ResponseBody response = ((HttpException) throwable).response().errorBody();
                         final Converter<ResponseBody, ErrorResponse> converter = client.getRetrofit().responseBodyConverter(ErrorResponse.class, new Annotation[0]);
                         final ErrorResponse errorResponse = converter.convert(response);
-                        mErrorMeassgeView.setText(errorResponse.getMessage());
+                        mErrorMessageView.setText(errorResponse.getMessage());
                         LOGGER.error(errorResponse.toString());
                     } else {
-                        mErrorMeassgeView.setText(throwable.getMessage());
+                        mErrorMessageView.setText(throwable.getMessage());
                         LOGGER.error(throwable);
                     }
                 }
