@@ -1,51 +1,57 @@
 package com.warys.scrooge.android.common.consumer;
 
-import com.warys.scrooge.android.authentication.service.PublicUsersApiService;
-import okhttp3.OkHttpClient;
+import com.warys.scrooge.android.authentication.service.ApiServiceLoader;
+import com.warys.scrooge.android.common.consumer.model.ErrorResponse;
+import okhttp3.ResponseBody;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RestClient {
+import java.lang.annotation.Annotation;
+
+import static com.warys.scrooge.android.authentication.consumer.AuthConstant.API_SERVER_URL;
+
+public class RestClient implements ApiServiceLoader {
+
+    public static RestClient INSTANCE;
 
     private Retrofit retrofit;
-    private PublicUsersApiService publicUsersApiService;
     private final String baseUrl;
-    OkHttpClient baseOkHttpClient;
 
-    RestClient(String baseUrl) {
-        this.baseUrl = baseUrl;
+    public static RestClient getInstance() {
+        if (INSTANCE == null) {
+            INSTANCE = new RestClient();
+            INSTANCE.init();
+        }
+
+        return INSTANCE;
+    }
+
+    private RestClient() {
+        this.baseUrl = API_SERVER_URL;
     }
 
     public void init() {
         if (retrofit == null) {
-            //OkHttpClient okHttpClient = baseOkHttpClient
-            //       .newBuilder()
-            //      .addInterceptor(new AuthInterceptorService())
-            //      .build();
-
-            retrofit = new Retrofit.Builder()
+            retrofit = new Retrofit
+                    .Builder()
                     .baseUrl(baseUrl)
-                    //.client(baseOkHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }
     }
 
-    public PublicUsersApiService getPublicUsersApiService() {
+
+    public <T> T load(Class<T> service) {
         if (retrofit == null) {
             throw new IllegalStateException("Rest client not initialized yet");
         }
-
-        if (publicUsersApiService == null) {
-            publicUsersApiService = retrofit.create(PublicUsersApiService.class);
-        }
-
-        return publicUsersApiService;
+        return retrofit.create(service);
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
+    public Converter<ResponseBody, ErrorResponse> getResponseBodyConverter(Class<ErrorResponse> errorResponseClass, Annotation[] annotations) {
+        return retrofit.responseBodyConverter(errorResponseClass, annotations);
     }
 }

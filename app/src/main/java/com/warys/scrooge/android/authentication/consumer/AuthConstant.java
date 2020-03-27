@@ -1,7 +1,7 @@
 package com.warys.scrooge.android.authentication.consumer;
 
 public class AuthConstant {
-    public static final String API_SERVER_URL = "http://192.168.56.1:8089/";
+    public static final String API_SERVER_URL = "https://scroogeapi.herokuapp.com";
     public static final String AUTHORIZATION = "Authorization";
     public static final String BEARER = "Bearer";
     public static final String USER_AGENT = "User-Agent";
