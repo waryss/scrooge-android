@@ -42,7 +42,6 @@ public abstract class AbstractActivity extends AppCompatActivity implements Load
         return new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), activityClass);
                 startActivityForResult(intent, 0);
             }

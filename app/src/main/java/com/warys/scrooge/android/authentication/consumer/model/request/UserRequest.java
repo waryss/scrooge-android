@@ -12,6 +12,7 @@ public class UserRequest {
     private String email;
     private String firstName;
     private String lastName;
+    private String password;
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
@@ -111,5 +112,13 @@ public class UserRequest {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

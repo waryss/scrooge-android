@@ -1,4 +1,4 @@
-package com.warys.scrooge.android.authentication.service;
+package com.warys.scrooge.android.common.service;
 
 
 public interface ApiServiceLoader {

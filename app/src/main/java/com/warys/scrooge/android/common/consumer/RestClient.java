@@ -1,6 +1,6 @@
 package com.warys.scrooge.android.common.consumer;
 
-import com.warys.scrooge.android.authentication.service.ApiServiceLoader;
+import com.warys.scrooge.android.common.service.ApiServiceLoader;
 import com.warys.scrooge.android.common.consumer.model.ErrorResponse;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
