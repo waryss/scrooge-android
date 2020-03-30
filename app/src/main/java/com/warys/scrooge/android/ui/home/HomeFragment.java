@@ -11,6 +11,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import com.warys.scrooge.android.R;
+import com.warys.scrooge.android.domain.Context;
+
+import static com.warys.scrooge.android.domain.Context.PageFragment.HOME;
 
 public class HomeFragment extends Fragment {
 
@@ -18,6 +21,7 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        Context.getInstance().setCurrentFragment(HOME);
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);

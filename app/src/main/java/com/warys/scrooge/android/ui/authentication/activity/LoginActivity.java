@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.warys.scrooge.android.BluePurseActivity;
 import com.warys.scrooge.android.R;
 import com.warys.scrooge.android.infrastructure.activity.AbstractAuthActivity;
-import com.warys.scrooge.android.infrastructure.activity.SharedData;
+import com.warys.scrooge.android.domain.Context;
 import com.warys.scrooge.android.infrastructure.consumer.RestClient;
 import com.warys.scrooge.android.infrastructure.consumer.RestRequester;
 import com.warys.scrooge.android.ui.authentication.consumer.HttpAsyncTask;
@@ -52,7 +52,7 @@ public class LoginActivity extends AbstractAuthActivity {
             final Consumer<LoginResponse> callback = getLoginCallback();
             RestRequester.execute(request, callback, mErrorMessageView);
 
-            return SharedData.getInstance().isConnected();
+            return Context.getInstance().isConnected();
         }
 
         @Override

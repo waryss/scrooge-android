@@ -19,6 +19,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.warys.scrooge.android.R;
+import com.warys.scrooge.android.domain.Context;
 import com.warys.scrooge.android.ui.authentication.consumer.HttpAsyncTask;
 import com.warys.scrooge.android.ui.authentication.consumer.model.response.LoginResponse;
 import io.reactivex.functions.Consumer;
@@ -77,7 +78,7 @@ public abstract class AbstractAuthActivity extends AppCompatActivity implements 
         return new Consumer<LoginResponse>() {
             @Override
             public void accept(LoginResponse response) {
-                SharedData.getInstance().setCurrentUser(response);
+                Context.getInstance().setCurrentUser(response);
             }
         };
     }

@@ -1,16 +1,16 @@
-package com.warys.scrooge.android.ui.gallery;
+package com.warys.scrooge.android.ui.analyse;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class AnalyseViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public AnalyseViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is analyse fragment");
     }
 
     public LiveData<String> getText() {
